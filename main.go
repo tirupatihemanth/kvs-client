@@ -27,7 +27,7 @@ func worker1(worker_id int) {
 		duration += time.Since(start)
 
 		if err != nil {
-			fmt.Println("Error sending request")
+			fmt.Println("Error sending request.", err)
 		}
 
 		req, _ = http.NewRequest(http.MethodGet, URL, nil)
@@ -37,7 +37,7 @@ func worker1(worker_id int) {
 		_, err = client.Do(req)
 		duration += time.Since(start)
 		if err != nil {
-			fmt.Println("Error sending request")
+			fmt.Println("Error sending request.", err)
 		}
 	}
 
