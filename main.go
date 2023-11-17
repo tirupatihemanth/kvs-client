@@ -39,16 +39,6 @@ func worker1(worker_id int) {
 		if err != nil {
 			fmt.Println("Error sending request.", err)
 		}
-
-		req, _ = http.NewRequest(http.MethodDelete, URL, nil)
-		req.Header.Add("Key", fmt.Sprintf("Key-%d-%d", worker_id, i))
-
-		start = time.Now()
-		_, err = client.Do(req)
-		duration += time.Since(start)
-		if err != nil {
-			fmt.Println("Error sending request.", err)
-		}
 	}
 
 	outchan <- float64(duration.Milliseconds())
@@ -71,7 +61,7 @@ func main() {
 
 	duration := time.Since(start)
 	close(outchan)
-	TOTAL_REQ := NUM_CLIENTS * NUM_REQ * 3
+	TOTAL_REQ := NUM_CLIENTS * NUM_REQ * 2
 	fmt.Printf("Total Requests: %d\n", TOTAL_REQ)
 	fmt.Printf("Total throughput: %f req/s\n", float64(TOTAL_REQ)/duration.Seconds())
 	fmt.Printf("Total latency: %f ms/req\n", latency/float64(NUM_CLIENTS))
