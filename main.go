@@ -64,5 +64,5 @@ func main() {
 	TOTAL_REQ := NUM_CLIENTS * NUM_REQ * 2
 	fmt.Printf("Total Requests: %d\n", TOTAL_REQ)
 	fmt.Printf("Total throughput: %f req/s\n", float64(TOTAL_REQ)/duration.Seconds())
-	fmt.Printf("Total latency: %f ms/req\n", latency/float64(NUM_CLIENTS))
+	fmt.Printf("Total latency: %f ms/req\n", latency/float64(NUM_CLIENTS*2))
 }
